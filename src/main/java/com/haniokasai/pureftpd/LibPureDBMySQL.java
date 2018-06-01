@@ -52,7 +52,7 @@ UNIQUE KEY User (User)
      * @param user1　MySQLアカウントのユーザ名
      * @param password1 MySQLアカウントのパスワード
      */
-    LibPureDBMySQL(String address1 ,String port1 ,String database1 ,String table1 ,boolean enablessl1 ,String user1 ,String password1){
+    public LibPureDBMySQL(String address1 ,String port1 ,String database1 ,String table1 ,boolean enablessl1 ,String user1 ,String password1){
         start(address1 ,port1 ,database1 ,table1 ,enablessl1 ,user1 ,password1);
     }
 
@@ -66,7 +66,7 @@ UNIQUE KEY User (User)
      * @param password1 MySQLアカウントのパスワード
      * @return 成功したらtrue。
      */
-    private boolean start(String address1, String port1, String database1, String table1, boolean enablessl1, String user1, String password1) {
+    public boolean start(String address1, String port1, String database1, String table1, boolean enablessl1, String user1, String password1) {
         address=address1;
         port=port1;
         database=database1;
@@ -207,7 +207,7 @@ VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', 
      * @param val 値
      * @return できるかできないか
      */
-    private boolean setUser(String  username,String val){
+   public boolean setUser(String  username,String val){
         //update uriage set price = 140 where name = 'Banana';
         String sql =  "UPDATE "+table+" SET `status` = ? WHERE User = ?";
         PreparedStatement stmt = null;
