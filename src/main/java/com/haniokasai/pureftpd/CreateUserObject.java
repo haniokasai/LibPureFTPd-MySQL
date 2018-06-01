@@ -5,18 +5,18 @@ public class CreateUserObject {
              INSERT INTO `ftpd` (`User`, `status`, `Password`, `Uid`, `Gid`, `Dir`, `ULBandwidth`, `DLBandwidth`, `comment`, `ipaccess`, `QuotaSize`, `QuotaFiles`)
 VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', '', '*', '0', '0');
              */
-    String User;
-    String status="1";
-    String Password;
-    int Uid = 2001;
-    int Gid = 2001;
-    String dir;
-    int ULBandwidth = 0;
-    int DLBandwidth = 0;
-    String comment ="LibPureDBMySQL";
-    String ipaccess = "*";
-    int QuotaSize = 0;
-    int QuotaFiles = 0;
+    public　String User;
+    public　String status="1";
+    public　String Password;
+    public　int Uid = 2001;
+    public　int Gid = 2001;
+    public　String dir;
+    public　int ULBandwidth = 0;
+    public　int DLBandwidth = 0;
+    public　String comment ="LibPureDBMySQL";
+    public　String ipaccess = "*";
+    public　int QuotaSize = 0;
+    public　int QuotaFiles = 0;
 
     /**
      * @param User1 ユーザ名
