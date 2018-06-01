@@ -23,7 +23,7 @@ VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', 
      * @param password1　パスワード
      * @param dir1　√フォルダ
      */
-    CreateUserObject(String User1,String password1,String dir1){
+    public CreateUserObject(String User1,String password1,String dir1){
         User=User1;
         Password=password1;
         dir=dir1;
