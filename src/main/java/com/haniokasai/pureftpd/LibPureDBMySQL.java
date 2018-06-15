@@ -26,7 +26,7 @@ DLBandwidth smallint(5) NOT NULL default '0',
 comment tinytext NOT NULL,
 ipaccess varchar(15) NOT NULL default '*',
 QuotaSize smallint(5) NOT NULL default '0',
-QuotaFiles int(11) NOT NULL default 0,
+QuotaFiles int(11) NOT NULL dSHA2efault 0,
 PRIMARY KEY (User),
 UNIQUE KEY User (User)
 ) ENGINE=InnoDB;
@@ -52,7 +52,7 @@ UNIQUE KEY User (User)
      * @param user1　MySQLアカウントのユーザ名
      * @param password1 MySQLアカウントのパスワード
      */
-    public LibPureDBMySQL(String address1 ,String port1 ,String database1 ,String table1 ,boolean enablessl1 ,String user1 ,String password1){
+    LibPureDBMySQL(String address1 ,String port1 ,String database1 ,String table1 ,boolean enablessl1 ,String user1 ,String password1){
         start(address1 ,port1 ,database1 ,table1 ,enablessl1 ,user1 ,password1);
     }
 
@@ -66,7 +66,7 @@ UNIQUE KEY User (User)
      * @param password1 MySQLアカウントのパスワード
      * @return 成功したらtrue。
      */
-    public boolean start(String address1, String port1, String database1, String table1, boolean enablessl1, String user1, String password1) {
+    private boolean start(String address1, String port1, String database1, String table1, boolean enablessl1, String user1, String password1) {
         address=address1;
         port=port1;
         database=database1;
@@ -139,12 +139,12 @@ UNIQUE KEY User (User)
 VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', '', '*', '0', '0');
              */
 
-            String sql = "INSERT INTO "+table+" (`User`, `status`, `Password`, `Uid`, `Gid`, `Dir`, `ULBandwidth`, `DLBandwidth`, `comment`, `ipaccess`, `QuotaSize`, `QuotaFiles`) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? );";
+            String sql = "INSERT INTO "+table+" (`User`, `status`, `Password`, `Uid`, `Gid`, `Dir`, `ULBandwidth`, `DLBandwidth`, `comment`, `ipaccess`, `QuotaSize`, `QuotaFiles`) VALUES (? ,? ,MD5(?) ,? ,? ,? ,? ,? ,? ,? ,? ,? );";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setQueryTimeout(10);
             stmt.setString(1 ,cu.User);
             stmt.setString(2 ,cu.status);
-            stmt.setString(3 ,toEncryptedHashValue("MD5",cu.Password));
+            stmt.setString(3 ,cu.Password);
             stmt.setInt(4 ,cu.Uid);
             stmt.setInt(5 ,cu.Gid);
             stmt.setString(6 ,cu.dir);
@@ -207,7 +207,7 @@ VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', 
      * @param val 値
      * @return できるかできないか
      */
-   public boolean setUser(String  username,String val){
+    private boolean setUser(String  username,String val){
         //update uriage set price = 140 where name = 'Banana';
         String sql =  "UPDATE "+table+" SET `status` = ? WHERE User = ?";
         PreparedStatement stmt = null;
