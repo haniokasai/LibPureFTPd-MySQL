@@ -47,13 +47,13 @@ UNIQUE KEY User (User)
      * @param address1 MySQLアドレス
      * @param port1 MySQLポート番号
      * @param database1 MySQLデータベース名　値の型を確認しない。
-     * @param table1 MySQLテーブル名
+     * @param table1 MySQLテーブル名、これは無効です
      * @param enablessl1 SSLをどうするか
      * @param user1　MySQLアカウントのユーザ名
      * @param password1 MySQLアカウントのパスワード
      */
     public LibPureDBMySQL(String address1 ,String port1 ,String database1 ,String table1 ,boolean enablessl1 ,String user1 ,String password1){
-        start(address1 ,port1 ,database1 ,table1 ,enablessl1 ,user1 ,password1);
+        start(address1 ,port1 ,database1 ,"ftpd" ,enablessl1 ,user1 ,password1);
     }
 
     /**
