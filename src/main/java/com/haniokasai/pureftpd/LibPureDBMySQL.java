@@ -301,6 +301,28 @@ VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', 
         }
     }
 
+    /**
+     * @param username FTPユーザー名
+     * @param val IPAddressまたは*
+     * @return できるかできないか
+     */
+    public boolean setIPAddress(String  username,String val){
+        String sql =  "UPDATE "+table+" SET `ipaccess` = ? WHERE User = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setQueryTimeout(10);
+            stmt.setString(2, username);
+            stmt.setString(1, val);
+            int count = stmt.executeUpdate();
+            stmt.close();
+            return (count > 0); // <-- something like this.
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     /**
      * @param algorithmName MD5など
