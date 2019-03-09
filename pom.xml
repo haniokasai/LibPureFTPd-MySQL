@@ -2,16 +2,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.haniokasai.pureftpd</groupId>
     <artifactId>Lib_Pure-FTPd-MySQL</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1.1</version>
     <description>github.com/Lib_Pure-FTPd-MySQL</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <repositories>
-
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -62,5 +58,35 @@
             </plugin>
         </plugins>
 
+        <extensions>
+            <!-- Enabling the use of FTP -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
+
     </build>
+
+    <!--deploy to ftp https://maven.apache.org/plugins/maven-deploy-plugin/examples/deploy-ftp.html-->
+    <!--.m2フォルダにsettings.xmlをおきなさい。
+    settings.xml
+        <settings>
+            <servers>
+                <server>
+                    <id>ftp-repository</id>
+                    <username>ユーザー名</username>
+                    <password>パスワード</password>
+                </server>
+            </servers>
+        </settings>
+    -->
+    <distributionManagement>
+        <repository>
+            <id>ftp-repository</id>
+            <url>ftp://maven.haniokasai.com/public</url>
+        </repository>
+    </distributionManagement>
+
 </project>
