@@ -323,6 +323,30 @@ VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', 
         }
     }
 
+    /**
+     * @param username FTPユーザ名
+     * @return IPAddressを返す
+     */
+    public String getIPAddress(String username){
+        if(!isUserExist(username))return"";
+        String sql =  "SELECT `ipaccess`  FROM "+table+" WHERE User = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setQueryTimeout(10);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                return  (rs.getString("ipaccess").trim());
+            }
+                return "";
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
 
     /**
      * @param algorithmName MD5など

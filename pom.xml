@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.haniokasai.pureftpd</groupId>
     <artifactId>Lib_Pure-FTPd-MySQL</artifactId>
-    <version>1.0.1.1</version>
+    <version>1.0.1.2</version>
     <description>github.com/Lib_Pure-FTPd-MySQL</description>
 
     <properties>
