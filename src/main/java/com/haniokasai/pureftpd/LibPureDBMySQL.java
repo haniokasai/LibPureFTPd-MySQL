@@ -214,8 +214,8 @@ VALUES ('testuser', '1', MD5('password'), '2001', '2001', '/var/www', '0', '0', 
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setQueryTimeout(10);
-            stmt.setString(1, username);
-            stmt.setString(2, val);
+            stmt.setString(2, username);
+            stmt.setString(1, val);
             int count = stmt.executeUpdate();
             stmt.close();
             return (count > 0); // <-- something like this.
